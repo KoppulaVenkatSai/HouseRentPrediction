@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../static/mainpage.css">
+    <style>
+        form{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        }
+    </style>
+    <title>Prediction Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="heading" align="center" id="main-heading">House Rent Predictor</h2>
+        <form name="myForm" action="/predict" onsubmit="return validateForm()" method="post">
+            <p id="size-label" style="display: inline;">Enter Size (10m<sup>2</sup> - 8000m<sup>2</sup>):</p>
+            <input id="size-ip" type="text" name="size"><br>
+            <div class="cards">
+                <div class="leftcard">
+                    <label>Select BHK:</label>
+                <select id="BHK" name="bhk">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select><br>
+                <label>Select Area Type:</label>
+                <select id="area-type" name="area-type">
+                    <option value="1">Super Area</option>
+                    <option value="2">Carpet Area</option>
+                    <option value="3">Built Area</option>
+                </select><br>
+                <label>Select city:</label>
+                <select id="city" name="city">
+                    <option value="1100">Delhi</option>
+                    <option value="4000">Mumbai</option>
+                    <option value="5000">Hyderabad</option>
+                    <option value="5600">Banglore</option>
+                    <option value="6000">Chennai</option>
+                    <option value="7000">Kolkata</option>
+                </select><br>
+                </div>
+                <div class="rightcard">
+                    <label>Select Furnishing Status:</label>
+                <select id="furnishing-status" name="furnishing-status">
+                    <option value="0">Unfurnished</option>
+                    <option value="1">Semi-furnished</option>
+                    <option value="2">Furnished</option>
+                </select><br>
+                <label>Select Tenant Preferred:</label>
+                <select id="tenant-preferred" name="tenant-preferred">
+                    <option value="1">Bachelors</option>
+                    <option value="2">Bachelors/Family</option>
+                    <option value="3">Family</option>
+                </select><br>
+                <label>Select Bathrooms:</label>
+                <select id="bathroom" name="bathroom">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select><br>
+                </div>
+            </div>
+            <input class="submit" type="submit">
+        </form>
+        <div class="outputdiv">
+            <h2><pre>{{pred}}</pre></h2>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let x = document.forms["myForm"]["size"].value;
+            if (x == "") {
+                alert("Enter Size");
+                return false;
+            }
+            if (/^[0-9]+$/.test(x) != true || Number(x) < 10 || Number(x) > 8000){
+                alert("Invalid Size");
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
